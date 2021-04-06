@@ -1,18 +1,24 @@
 server:
-  port: 8080
+  port: 8070
 
 spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/alibaba_user?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
   application:
-    name: my-web
+    name: user-service
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-    cloud:
-      nacos:
-        discovery:
-          server-addr: 127.0.0.1:8848
-    main:
-      allow-bean-definition-overriding: true #在 Spring Boot 2.1 以及更高的版本增加该设定，因为 Spring Boot 默认调整了 Bean 定义覆盖行为
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  main:
+    allow-bean-definition-overriding: true #在 Spring Boot 2.1 以及更高的版本增加该设定，因为 Spring Boot 默认调整了 Bean 定义覆盖行为
   redis:
     #Redis服务器地址
     host: 127.0.0.1
@@ -28,6 +34,17 @@ logging:
   level:
     com.alibaba.nacos.client.naming: warn
 
+mybatis:
+  #typeAliasesPackage: com.meizu.base.entity
+  #指定mapper文件
+  mapperLocations: classpath:mapper/**/*Mapper.xml
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
 dubbo:
   registry:
 #    address: nacos://127.0.0.1:8848 #注册中心地址
@@ -38,12 +55,6 @@ dubbo:
     port: -1 #port为协议端口（ -1 表示自增端口，从 20880 开始）
   consumer:
     check: false #@DubboReference启动校验
-#    loadbalance: "leastactive"    # 最小活跃数负载均衡
-#负载均衡策略
-#RandomLoadBalance：随机，按权重设置随机概率
-#ConsistentHashLoadBalance：一致性哈希算法
-#LeastActiveLoadBalance：最小活跃数负载均衡
-#RoundRobinLoadBalance：根据权重进轮训
   cloud:
-    subscribed-services: user-service,order-service,mail-service
+    subscribed-services: order-service,mail-service
 

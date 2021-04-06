@@ -5,6 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>my-web</module>
+        <module>user-service</module>
+        <module>my-common</module>
+        <module>user-api</module>
     </modules>
 
     <parent>

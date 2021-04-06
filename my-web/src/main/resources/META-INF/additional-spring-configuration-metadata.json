@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.jackson.main.allow-bean-definition-overriding",
+      "type": "java.lang.String",
+      "description": "Description for spring.jackson.main.allow-bean-definition-overriding."
+  }
+] }
