@@ -8,6 +8,8 @@
         <module>user-service</module>
         <module>my-common</module>
         <module>user-api</module>
+        <module>order-service</module>
+        <module>order-api</module>
     </modules>
 
     <parent>

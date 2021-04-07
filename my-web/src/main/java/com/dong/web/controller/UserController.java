@@ -1,6 +1,5 @@
-package com.dong.controller;
+package com.dong.web.controller;
 
-import com.dong.common.constant.StatusCode;
 import com.dong.common.dto.ResultDto;
 import com.dong.common.util.LogUtil;
 import com.dong.common.util.ResponseUtil;

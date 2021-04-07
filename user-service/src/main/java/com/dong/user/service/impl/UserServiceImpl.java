@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import com.dong.common.constant.StatusCode;
 import com.dong.common.exception.BussinessException;
 import com.dong.common.util.LogUtil;
+import com.dong.common.util.RedisUtil;
 import com.dong.user.domain.UserEntity;
 import com.dong.user.dto.UserDto;
 import com.dong.user.mapper.UserMapper;
@@ -29,6 +30,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public List<UserDto> getUsers() {
@@ -72,6 +76,11 @@ public class UserServiceImpl implements UserService {
     public int deleteUser(Integer id) {
         int count = userMapper.deleteByPrimaryKey(id);
         return count;
+    }
+
+    @Override
+    public UserDto findUserById(Integer id) {
+        return userMapper.findUserById(id);
     }
 
 }
