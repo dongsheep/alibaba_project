@@ -62,7 +62,8 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(dto, user);
         user.setUpdateTime(DateUtil.date());
         int count = userMapper.updateByPrimaryKeySelective(user);
-        double x = 1 / 0;
+        // 报错
+//        double x = 1 / 0;
         if (count == 1) {
             return userMapper.findUserById(user.getId());
         } else {

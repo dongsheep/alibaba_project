@@ -7,12 +7,15 @@ import com.dong.common.constant.StatusCode;
 import com.dong.common.exception.BussinessException;
 import com.dong.common.util.LogUtil;
 import com.dong.common.util.RedisUtil;
+import com.dong.mail.dto.MailDto;
+import com.dong.mail.service.MailService;
 import com.dong.order.domain.OrderEntity;
 import com.dong.order.dto.OrderDto;
 import com.dong.order.mapper.OrderMapper;
 import com.dong.order.service.OrderService;
 import com.dong.user.dto.UserDto;
 import com.dong.user.service.UserService;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.logging.log4j.Logger;
@@ -40,8 +43,11 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private RedisUtil redisUtil;
 
-    @DubboReference // 引入dubbo远程对象
+    @DubboReference(timeout = 5000) // 引入dubbo远程对象
     private UserService userService;
+
+    @DubboReference(timeout = 5000)
+    private MailService mailService;
 
     @Override
     public List<OrderDto> findOrderByUserId(Integer userId) {
@@ -58,19 +64,35 @@ public class OrderServiceImpl implements OrderService {
         return rec;
     }
 
-    @Transactional
+    @GlobalTransactional
+//    @Transactional
     @Override
     public OrderDto createOrder(OrderDto dto) {
+        long st = System.currentTimeMillis();
         OrderEntity order = new OrderEntity();
         BeanUtils.copyProperties(dto, order);
         order.setCreateTime(DateUtil.date());
         int count = orderMapper.insert(order);
         if (count == 1) {
             OrderDto obj = orderMapper.findOrderById(order.getId());
+            long orderEd = System.currentTimeMillis();
+            log.info("order used:" + (orderEd - st) + "ms");
             // 远程调用user-service
             UserDto user = userService.findUserById(dto.getBuyerId());
-            userService.updateUser(user);
             obj.setBuyer(user.getName());
+            userService.updateUser(user);
+            long userEd = System.currentTimeMillis();
+            log.info("user used:" + (userEd - orderEd) + "ms");
+            // 远程调用mail-service
+            MailDto mail = new MailDto();
+            mail.setModule("order");
+            mail.setTitle("测试邮件");
+            mail.setContent("hello world...");
+            mail.setSendStatus(0);
+            mail.setReceiver(user.getEmail());
+            mailService.sendEmail(mail);
+            long mailEd = System.currentTimeMillis();
+            log.info("mail used:" + (mailEd - userEd) + "ms");
             return obj;
         } else {
             log.warn("createOrder success zero...");

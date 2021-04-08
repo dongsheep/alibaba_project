@@ -10,6 +10,8 @@
         <module>user-api</module>
         <module>order-service</module>
         <module>order-api</module>
+        <module>mail-service</module>
+        <module>mail-api</module>
     </modules>
 
     <parent>

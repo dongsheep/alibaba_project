@@ -12,6 +12,8 @@ import java.util.Date;
 
 public class OrderDto implements Serializable {
 
+    private Integer id;
+
     private String orderCode;
 
     private BigDecimal totalAmount;
@@ -62,10 +64,19 @@ public class OrderDto implements Serializable {
         this.buyerId = buyerId;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "OrderDto{" +
-                "orderCode='" + orderCode + '\'' +
+                "id=" + id +
+                ", orderCode='" + orderCode + '\'' +
                 ", totalAmount=" + totalAmount +
                 ", buyerId=" + buyerId +
                 ", buyer='" + buyer + '\'' +

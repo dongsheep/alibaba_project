@@ -33,6 +33,7 @@ public class UserController {
         user.setName("Tom");
         user.setSex(1);
         user.setSexText("男");
+        user.setEmail("408515371@qq.com");
         UserDto dto = userService.addUser(user);
         return ResponseUtil.ok(dto);
     }
@@ -44,6 +45,7 @@ public class UserController {
         user.setName("Susan");
         user.setSex(2);
         user.setSexText("女");
+        user.setEmail("408515371@qq.com");
         UserDto dto = userService.updateUser(user);
         return ResponseUtil.ok(dto);
     }

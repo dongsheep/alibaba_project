@@ -22,7 +22,7 @@ public class OrderController {
 
     private static Logger log = LogUtil.get(OrderController.class);
 
-    @DubboReference // 引入dubbo远程对象
+    @DubboReference(timeout = 5000) // 引入dubbo远程对象
     private OrderService orderService;
 
     @GetMapping("/orders/{userId}")
@@ -34,9 +34,9 @@ public class OrderController {
     @PostMapping("/createOrder")
     public ResultDto<Object> createOrder() {
         OrderDto order = new OrderDto();
-        order.setOrderCode("12345678");
+        order.setOrderCode("123456789");
         order.setBuyerId(1);
-        order.setTotalAmount(new BigDecimal("4000"));
+        order.setTotalAmount(new BigDecimal("5000"));
         OrderDto dto = orderService.createOrder(order);
         return ResponseUtil.ok(dto);
     }

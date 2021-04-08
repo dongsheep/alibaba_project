@@ -4,51 +4,59 @@ import java.util.Date;
 
 /**
  * DO实体对象
- * 
- * @author xiedongxiao
  *
+ * @author xiedongxiao
  */
 
 public class UserEntity {
 
-	private Integer id;
+    private Integer id;
 
-	private String name;
+    private String name;
 
-	private Integer sex;
+    private Integer sex;
 
-	private Date updateTime;
+    private String email;
 
-	public Integer getId() {
-		return id;
-	}
+    private Date updateTime;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name == null ? null : name.trim();
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Integer getSex() {
-		return sex;
-	}
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
 
-	public void setSex(Integer sex) {
-		this.sex = sex;
-	}
+    public Integer getSex() {
+        return sex;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-	
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

@@ -19,6 +19,8 @@ public class UserDto implements Serializable {
 
     private String sexText;
 
+    private String email;
+
     private Date updateTime;
 
     public Integer getId() {
@@ -61,9 +63,24 @@ public class UserDto implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
-        return "UserDto [id=" + id + ", name=" + name + ", sex=" + sex + ", sexText=" + sexText + ", updateTime=" + updateTime + "]";
+        return "UserDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sex=" + sex +
+                ", sexText='" + sexText + '\'' +
+                ", email='" + email + '\'' +
+                ", updateTime=" + updateTime +
+                '}';
     }
 
 }
