@@ -76,8 +76,9 @@ rocketmq:
   # 生产者端配置
   producer:
     group: my_test_producer_group
-#  consumer:
-#    group: my_test_consumer_group
-  topic: my_topic
+  consumer:
+    group: my_test_consumer_group
+  topic:
+    mail: mail_topic
 
 

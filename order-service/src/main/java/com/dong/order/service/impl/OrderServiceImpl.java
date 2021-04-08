@@ -19,8 +19,10 @@ import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.apache.logging.log4j.Logger;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -43,11 +45,17 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private RedisUtil redisUtil;
 
-    @DubboReference(timeout = 5000) // 引入dubbo远程对象
+    @DubboReference(timeout = 1000) // 引入dubbo远程对象
     private UserService userService;
 
-    @DubboReference(timeout = 5000)
+    @DubboReference(timeout = 1000)
     private MailService mailService;
+
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
+
+    @Value("${rocketmq.topic.mail}")
+    private String topicMail;
 
     @Override
     public List<OrderDto> findOrderByUserId(Integer userId) {
@@ -90,7 +98,8 @@ public class OrderServiceImpl implements OrderService {
             mail.setContent("hello world...");
             mail.setSendStatus(0);
             mail.setReceiver(user.getEmail());
-            mailService.sendEmail(mail);
+//            mailService.sendEmail(mail);
+            rocketMQTemplate.convertAndSend(topicMail, mail);
             long mailEd = System.currentTimeMillis();
             log.info("mail used:" + (mailEd - userEd) + "ms");
             return obj;

@@ -78,6 +78,7 @@ rocketmq:
     group: my_test_producer_group
   consumer:
     group: my_test_consumer_group
-  topic: my_topic
+  topic:
+    mail: mail_topic
 
 

@@ -22,7 +22,7 @@ public class OrderController {
 
     private static Logger log = LogUtil.get(OrderController.class);
 
-    @DubboReference(timeout = 5000) // 引入dubbo远程对象
+    @DubboReference(timeout = 1000) // 引入dubbo远程对象
     private OrderService orderService;
 
     @GetMapping("/orders/{userId}")
