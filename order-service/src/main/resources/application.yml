@@ -55,6 +55,8 @@ dubbo:
     port: -1 #port为协议端口（ -1 表示自增端口，从 20880 开始）
   consumer:
     check: false #@DubboReference启动校验
+    timeout: 1000
+#    retries: 0 #默认是2
   cloud:
     subscribed-services: user-service,mail-service
 

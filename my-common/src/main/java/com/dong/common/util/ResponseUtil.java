@@ -31,6 +31,14 @@ public class ResponseUtil {
         return result;
     }
 
+    public static ResultDto<Object> error(String data) {
+        ResultDto<Object> result = new ResultDto<>();
+        result.setCode(StatusCode.INTERNAL_ERROR.getCode());
+        result.setMsg(StatusCode.INTERNAL_ERROR.getMsg());
+        result.setData(data);
+        return result;
+    }
+
     public static ResultDto<String> error(StatusCode obj) {
         ResultDto<String> result = new ResultDto<>();
         result.setCode(obj.getCode());

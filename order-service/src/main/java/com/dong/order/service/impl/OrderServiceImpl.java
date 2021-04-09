@@ -45,10 +45,10 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private RedisUtil redisUtil;
 
-    @DubboReference(timeout = 1000) // 引入dubbo远程对象
+    @DubboReference // 引入dubbo远程对象
     private UserService userService;
 
-    @DubboReference(timeout = 1000)
+    @DubboReference
     private MailService mailService;
 
     @Autowired
@@ -98,8 +98,8 @@ public class OrderServiceImpl implements OrderService {
             mail.setContent("hello world...");
             mail.setSendStatus(0);
             mail.setReceiver(user.getEmail());
-//            mailService.sendEmail(mail);
-            rocketMQTemplate.convertAndSend(topicMail, mail);
+            mailService.sendEmail(mail);
+//            rocketMQTemplate.convertAndSend(topicMail, mail);
             long mailEd = System.currentTimeMillis();
             log.info("mail used:" + (mailEd - userEd) + "ms");
             return obj;
