@@ -34,9 +34,9 @@ public class OrderController {
     @PostMapping("/createOrder")
     public ResultDto<Object> createOrder() {
         OrderDto order = new OrderDto();
-        order.setOrderCode("123456789");
+        order.setOrderCode("123");
         order.setBuyerId(1);
-        order.setTotalAmount(new BigDecimal("5000"));
+        order.setTotalAmount(new BigDecimal("1000"));
         OrderDto dto = orderService.createOrder(order);
         return ResponseUtil.ok(dto);
     }

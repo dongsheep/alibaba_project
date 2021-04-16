@@ -33,4 +33,11 @@ public class MockTest {
         System.err.println(response.getContentAsString(Charset.defaultCharset()));
     }
 
+    @Test
+    public void createOrder() throws Exception {
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/createOrder")).andReturn();
+        MockHttpServletResponse response = result.getResponse();
+        System.err.println(response.getContentAsString(Charset.defaultCharset()));
+    }
+
 }

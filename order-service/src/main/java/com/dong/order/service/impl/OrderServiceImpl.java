@@ -102,6 +102,7 @@ public class OrderServiceImpl implements OrderService {
 //            rocketMQTemplate.convertAndSend(topicMail, mail);
             long mailEd = System.currentTimeMillis();
             log.info("mail used:" + (mailEd - userEd) + "ms");
+//            double x = 1 / 0;
             return obj;
         } else {
             log.warn("createOrder success zero...");

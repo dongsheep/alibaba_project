@@ -47,7 +47,7 @@ public class MailServiceImpl implements MailService {
         BeanUtils.copyProperties(dto, entity);
         entity.setResponseTime(DateUtil.date());
         mailDao.save(entity);
-        double x = 1 / 0;
+//        double x = 1 / 0;
         boolean flag = sendMailTool.sendSimpleMail(dto.getReceiver(), dto.getTitle(), dto.getContent());
         if (flag) {
             entity.setSendStatus(1);

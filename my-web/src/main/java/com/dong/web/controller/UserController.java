@@ -59,13 +59,13 @@ public class UserController {
     @DubboReference // 引入dubbo远程对象
     private UserService userService;
 
-    @Autowired
-    private TestHandler testHandler;
+//    @Autowired
+//    private TestHandler testHandler;
 
 //    @SentinelResource(value = "users", blockHandler = "handleException", blockHandlerClass = UserHandler.class)
     @GetMapping("/users")
     public ResultDto<Object> getUsers() {
-        log.info(testHandler.haha());
+//        log.info(testHandler.haha());
         List<UserDto> users = userService.getUsers();
         return ResponseUtil.ok(users);
     }

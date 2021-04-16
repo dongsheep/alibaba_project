@@ -61,19 +61,35 @@ dubbo:
 
 #seata配置
 seata:
-  enabled: true
-  application-id: ${spring.application.name}
-  tx-service-group: my_tx_group_test
+  #  enabled: true
+  #  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group
   service:
     vgroup-mapping:
-      my_tx_group_test: default
-    grouplist:
-      default: 172.16.180.93:8091
+      my_test_tx_group: default
+  #注册中心位file的时候使用
+  #    grouplist:
+  #      default: 127.0.0.1:8091
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
 
 #rockermq配置
 rocketmq:
   #rocketmq的NameServer地址
-  name-server: 172.16.180.93:9876
+  name-server: 127.0.0.1:9876
   # 生产者端配置
   producer:
     group: my_test_producer_group
