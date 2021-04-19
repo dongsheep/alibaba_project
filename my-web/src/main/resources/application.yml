@@ -31,8 +31,8 @@ spring:
 #            strategy: 流控模式，0表示直接，1表示关联，2表示链路
 #            controlBehavior:流控效果，0表示快速失败，1表示Warm Up,2表示排队等待；
 #            clusterMode:是否集群。
-    main:
-      allow-bean-definition-overriding: true #在 Spring Boot 2.1 以及更高的版本增加该设定，因为 Spring Boot 默认调整了 Bean 定义覆盖行为
+#    main:
+#      allow-bean-definition-overriding: true #在 Spring Boot 2.1 以及更高的版本增加该设定，因为 Spring Boot 默认调整了 Bean 定义覆盖行为
   redis:
     host: 127.0.0.1 #Redis服务器地址
     port: 6379 #Redis服务器连接端口
