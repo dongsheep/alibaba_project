@@ -22,4 +22,24 @@ public class TestHandler {
         return "haha服务熔断降级...";
     }
 
+    /**
+     * Sentinel异常
+     *
+     * @param exception
+     * @return
+     */
+    public static String blockHandler(BlockException exception) {
+        return "Hello Spring Cloud Alibaba...blockHandler";
+    }
+
+    /**
+     * 业务异常
+     *
+     * @param e
+     * @return
+     */
+    public static String fallback(Throwable e) {
+        return "Hello Spring Cloud Alibaba...fallback";
+    }
+
 }

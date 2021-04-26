@@ -12,6 +12,7 @@
         <module>order-api</module>
         <module>mail-service</module>
         <module>mail-api</module>
+        <module>api-gateway</module>
     </modules>
 
     <parent>

@@ -42,4 +42,12 @@ public class ResultDto<T> implements Serializable {
 		this.data = data;
 	}
 
+	public ResultDto() {
+	}
+
+	public ResultDto(String code, String msg) {
+		this.code = code;
+		this.msg = msg;
+	}
+
 }

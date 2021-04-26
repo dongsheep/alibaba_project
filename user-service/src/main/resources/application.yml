@@ -24,6 +24,13 @@ spring:
     port: 6379 #Redis服务器连接端口
     password: foobared
     timeout: 10000 #连接超时时间（毫秒）
+#  zipkin:
+#    base-url: http://127.0.0.1:9411 #zipkin-server地址
+#    discovery-client-enabled: false #nacos不发现
+#  sleuth:
+#    enabled: true
+#    sampler:
+#      probability: 1.0 #采样的百分比
 
 #指定日志配置文件，默认是log4j2-spring.xml，推荐使用log4j2.xml
 logging:
